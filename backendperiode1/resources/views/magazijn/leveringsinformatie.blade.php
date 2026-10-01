@@ -56,6 +56,14 @@
                         </tbody>
                     </table>
 
+                    @if ($geenVoorraad)
+                        <script>
+                            setTimeout(function () {
+                                window.location.href = "{{ route('magazijn.index') }}";
+                            }, 4000);
+                        </script>
+                    @endif
+
                     <a href="{{ route('magazijn.index') }}" class="inline-block mt-6 text-blue-600 hover:underline">
                         Terug naar Overzicht Magazijn Jamin
                     </a>
