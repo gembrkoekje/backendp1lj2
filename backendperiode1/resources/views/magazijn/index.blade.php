@@ -28,7 +28,11 @@
                                     <td class="border border-gray-300 px-4 py-2">{{ $product->VerpakkingsEenheid }}</td>
                                     <td class="border border-gray-300 px-4 py-2">{{ $product->AantalAanwezig }}</td>
                                     <td class="border border-gray-300 px-4 py-2 text-center"></td>
-                                    <td class="border border-gray-300 px-4 py-2 text-center"></td>
+                                    <td class="border border-gray-300 px-4 py-2 text-center">
+                                        <a href="{{ route('magazijn.leveringsinformatie', $product->Id) }}"
+                                           title="Leverantie Info"
+                                           style="color: #2563eb; font-size: 1.4rem; font-weight: bold; text-decoration: none;">&#63;</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
