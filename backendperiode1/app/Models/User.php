@@ -29,4 +29,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Controleert of de gebruiker een van de opgegeven rollen heeft.
+     */
+    public function hasRole(string ...$rollen): bool
+    {
+        return in_array($this->rolename, $rollen, true);
+    }
+
+    /**
+     * Controleert of de gebruiker het magazijn mag bekijken.
+     */
+    public function magMagazijnZien(): bool
+    {
+        return $this->hasRole('admin', 'magazijnmedewerker');
+    }
 }
