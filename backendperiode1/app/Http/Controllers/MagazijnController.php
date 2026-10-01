@@ -25,4 +25,19 @@ class MagazijnController extends Controller
             'producten' => $producten,
         ]);
     }
+
+    /**
+     * Toont het detailscherm Levering Informatie van het gekozen product.
+     */
+    public function leveringsinformatie(int $productId)
+    {
+        $leverancier = $this->magazijnModel->getLeverancierByProductId($productId);
+        $leveringen = $this->magazijnModel->getLeveringenByProductId($productId);
+
+        return view('magazijn.leveringsinformatie', [
+            'title' => 'Levering Informatie',
+            'leverancier' => $leverancier,
+            'leveringen' => $leveringen,
+        ]);
+    }
 }
