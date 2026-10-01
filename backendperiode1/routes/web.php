@@ -18,6 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/magazijn', [MagazijnController::class, 'index'])->name('magazijn.index');
+    Route::get('/magazijn/{productId}/leveringsinformatie', [MagazijnController::class, 'leveringsinformatie'])
+        ->whereNumber('productId')
+        ->name('magazijn.leveringsinformatie');
 });
 
 require __DIR__.'/auth.php';
