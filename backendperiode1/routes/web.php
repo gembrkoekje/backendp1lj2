@@ -17,13 +17,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/magazijn', [MagazijnController::class, 'index'])->name('magazijn.index');
-    Route::get('/magazijn/{productId}/leveringsinformatie', [MagazijnController::class, 'leveringsinformatie'])
-        ->whereNumber('productId')
-        ->name('magazijn.leveringsinformatie');
-    Route::get('/magazijn/{productId}/allergenen', [MagazijnController::class, 'allergenen'])
-        ->whereNumber('productId')
-        ->name('magazijn.allergenen');
+    Route::middleware('role:admin,magazijnmedewerker')->group(function () {
+        Route::get('/magazijn', [MagazijnController::class, 'index'])->name('magazijn.index');
+        Route::get('/magazijn/{productId}/leveringsinformatie', [MagazijnController::class, 'leveringsinformatie'])
+            ->whereNumber('productId')
+            ->name('magazijn.leveringsinformatie');
+        Route::get('/magazijn/{productId}/allergenen', [MagazijnController::class, 'allergenen'])
+            ->whereNumber('productId')
+            ->name('magazijn.allergenen');
+    });
 });
 
 require __DIR__.'/auth.php';
