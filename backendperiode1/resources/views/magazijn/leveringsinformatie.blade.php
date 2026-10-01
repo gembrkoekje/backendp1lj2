@@ -28,6 +28,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if ($geenVoorraad)
+                                <tr>
+                                    <td colspan="4" class="border border-gray-300 px-4 py-2 text-center">
+                                        Er is van dit product op dit moment geen voorraad aanwezig, de verwachte eerstvolgende levering is:
+                                        {{ $eerstVolgendeLevering ? date('d-m-Y', strtotime($eerstVolgendeLevering)) : 'onbekend' }}
+                                    </td>
+                                </tr>
+                            @else
                             @forelse ($leveringen as $levering)
                                 <tr>
                                     <td class="border border-gray-300 px-4 py-2">{{ $levering->Naam }}</td>
@@ -44,6 +52,7 @@
                                     </td>
                                 </tr>
                             @endforelse
+                            @endif
                         </tbody>
                     </table>
 
