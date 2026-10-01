@@ -48,7 +48,7 @@ class MagazijnController extends Controller
         }
 
         return view('magazijn.leveringsinformatie', [
-            'title' => 'Levering Informatie',
+            'title' => 'Leverings Informatie',
             'leverancier' => $leverancier,
             'leveringen' => $leveringen,
             'geenVoorraad' => $geenVoorraad,
