@@ -31,13 +31,28 @@ class MagazijnController extends Controller
      */
     public function leveringsinformatie(int $productId)
     {
+        $product = $this->magazijnModel->getMagazijnByProductId($productId);
+
+        if (! $product) {
+            return redirect()->route('magazijn.index');
+        }
+
         $leverancier = $this->magazijnModel->getLeverancierByProductId($productId);
         $leveringen = $this->magazijnModel->getLeveringenByProductId($productId);
+
+        $geenVoorraad = empty($product->AantalAanwezig);
+        $eerstVolgendeLevering = null;
+
+        if ($geenVoorraad && ! empty($leveringen)) {
+            $eerstVolgendeLevering = end($leveringen)->DatumEerstVolgendeLevering;
+        }
 
         return view('magazijn.leveringsinformatie', [
             'title' => 'Levering Informatie',
             'leverancier' => $leverancier,
             'leveringen' => $leveringen,
+            'geenVoorraad' => $geenVoorraad,
+            'eerstVolgendeLevering' => $eerstVolgendeLevering,
         ]);
     }
 }
