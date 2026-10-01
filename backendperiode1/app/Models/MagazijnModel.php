@@ -36,6 +36,28 @@ class MagazijnModel
     }
 
     /**
+     * Haalt de magazijngegevens op van het gekozen product.
+     */
+    public function getMagazijnByProductId(int $productId): object|false
+    {
+        $sql = "SELECT  PROD.Id
+                       ,PROD.Naam
+                       ,PROD.Barcode
+                       ,MAGA.VerpakkingsEenheid
+                       ,MAGA.AantalAanwezig
+                FROM    Magazijn AS MAGA
+                INNER JOIN Product AS PROD
+                        ON PROD.Id = MAGA.ProductId
+                WHERE   MAGA.ProductId = :productId";
+
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_OBJ);
+    }
+
+    /**
      * Haalt de leveranciergegevens op van het gekozen product.
      */
     public function getLeverancierByProductId(int $productId): object|false
