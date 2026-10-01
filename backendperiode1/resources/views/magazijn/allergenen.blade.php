@@ -22,12 +22,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($allergenen as $allergeen)
+                            @forelse ($allergenen as $allergeen)
                                 <tr>
                                     <td class="border border-gray-300 px-4 py-2">{{ $allergeen->Naam }}</td>
                                     <td class="border border-gray-300 px-4 py-2">{{ $allergeen->Omschrijving }}</td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="2" class="border border-gray-300 px-4 py-2 text-center">
+                                        In dit product zitten geen stoffen die een allergische reactie kunnen veroorzaken
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
 
