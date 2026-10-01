@@ -32,10 +32,10 @@ DROP TABLE IF EXISTS `allergeen`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `allergeen` (
   `Id` int unsigned NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Omschrijving` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Naam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Omschrijving` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DatumAangemaakt` datetime(6) NOT NULL,
   `DatumGewijzigd` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`)
@@ -60,8 +60,8 @@ DROP TABLE IF EXISTS `cache`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` bigint NOT NULL,
   PRIMARY KEY (`key`),
   KEY `cache_expiration_index` (`expiration`)
@@ -85,8 +85,8 @@ DROP TABLE IF EXISTS `cache_locks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` bigint NOT NULL,
   PRIMARY KEY (`key`),
   KEY `cache_locks_expiration_index` (`expiration`)
@@ -111,11 +111,11 @@ DROP TABLE IF EXISTS `failed_jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`),
@@ -140,13 +140,13 @@ DROP TABLE IF EXISTS `job_batches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
   `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `failed_job_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
   `finished_at` int DEFAULT NULL,
@@ -172,8 +172,8 @@ DROP TABLE IF EXISTS `jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` smallint unsigned NOT NULL,
   `reserved_at` int unsigned DEFAULT NULL,
   `available_at` int unsigned NOT NULL,
@@ -201,12 +201,12 @@ DROP TABLE IF EXISTS `leverancier`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `leverancier` (
   `Id` int unsigned NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ContactPersoon` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LeverancierNummer` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Mobiel` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Naam` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ContactPersoon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LeverancierNummer` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Mobiel` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DatumAangemaakt` datetime(6) NOT NULL,
   `DatumGewijzigd` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`)
@@ -236,7 +236,7 @@ CREATE TABLE `magazijn` (
   `VerpakkingsEenheid` decimal(6,2) NOT NULL,
   `AantalAanwezig` int unsigned DEFAULT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DatumAangemaakt` datetime(6) NOT NULL,
   `DatumGewijzigd` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`),
@@ -264,7 +264,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -288,8 +288,8 @@ DROP TABLE IF EXISTS `password_reset_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -313,10 +313,10 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `Id` int unsigned NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Barcode` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Naam` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Barcode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DatumAangemaakt` datetime(6) NOT NULL,
   `DatumGewijzigd` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`)
@@ -345,7 +345,7 @@ CREATE TABLE `productperallergeen` (
   `ProductId` int unsigned NOT NULL,
   `AllergeenId` int unsigned NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DatumAangemaakt` datetime(6) NOT NULL,
   `DatumGewijzigd` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`),
@@ -381,7 +381,7 @@ CREATE TABLE `productperleverancier` (
   `Aantal` int unsigned NOT NULL,
   `DatumEerstVolgendeLevering` date DEFAULT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DatumAangemaakt` datetime(6) NOT NULL,
   `DatumGewijzigd` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`),
@@ -410,11 +410,11 @@ DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
@@ -428,7 +428,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('Hm3DhctHVoau4GdIXhtc9RCOdGyj3uqj4OKcD4Z2',NULL,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiI2aVRUTlZkdm1qdUNqaEFORUEwT05aRmFzdGdZZUE2ZlJ0VHBrbzhWIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6WyJfb2xkX2lucHV0IiwiZXJyb3JzIl0sIm5ldyI6W119LCJfb2xkX2lucHV0Ijp7Il90b2tlbiI6IjZpVFROVmR2bWp1Q2poQU5FQTBPTlpGYXN0Z1llQTZmUnRUcGtvOFYiLCJuYW1lIjoiSGFja2VyIiwiZW1haWwiOiJoYWNrZXJAZXhhbXBsZS5jb20iLCJyb2xlbmFtZSI6InN1cGVyYWRtaW4ifSwiZXJyb3JzIjp7ImRlZmF1bHQiOnsiZm9ybWF0IjoiOm1lc3NhZ2UiLCJtZXNzYWdlcyI6eyJyb2xlbmFtZSI6WyJUaGUgc2VsZWN0ZWQgcm9sZW5hbWUgaXMgaW52YWxpZC4iXX19fX0=',1790681930),('vQ6RPpIts9zSchm2PMEZ8yeM0ACRT5SAbceoLqdg',1,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiI5d3hwVDBwNHVpdFRZRTZScE1yRFJVWHY3cUdMQ2lBS3FHNFdmT09VIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwicGFzc3dvcmRfaGFzaF93ZWIiOiIyOWM0NTVkZjQ5OTBkMjU0MDNiZGY1YjhhOTUzZjU2YzJmYzE1ZjgwZTBkNTUyMWUxOTk3N2VhZDM5YmJlYjZlIn0=',1790681922),('wrKzp2tFXwaSR4qkMioQzTPtEScO7YWvqXPZvJkZ',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJEUkVIdVB0WVhuY1N3ZE1xNkV2Q0N2WlNOd25Talc3YXE2UWl3MjBvIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL3Byb2ZpbGUiLCJyb3V0ZSI6InByb2ZpbGUuZWRpdCJ9LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MywicGFzc3dvcmRfaGFzaF93ZWIiOiIyMGUzYzQ5OGYwMzg0NDA3YjllYjlhODQ3OGRlMDMxNGQ0ZDY1ZGUwOGQxMjNmNWU0ZGE1NTAwMGViZjMzOTdmIn0=',1790682853),('XEMpHxCkF2H4N1erbpDLLYQ1SkbIcWZGDUUwXmuO',NULL,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiJOYVhOZDBvSWkyU3RvdkEwbDdhOE5aNktwb0VHWW9TWldUS3NxYTZlIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==',1790681902);
+INSERT INTO `sessions` VALUES ('Hm3DhctHVoau4GdIXhtc9RCOdGyj3uqj4OKcD4Z2',NULL,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiI2aVRUTlZkdm1qdUNqaEFORUEwT05aRmFzdGdZZUE2ZlJ0VHBrbzhWIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6WyJfb2xkX2lucHV0IiwiZXJyb3JzIl0sIm5ldyI6W119LCJfb2xkX2lucHV0Ijp7Il90b2tlbiI6IjZpVFROVmR2bWp1Q2poQU5FQTBPTlpGYXN0Z1llQTZmUnRUcGtvOFYiLCJuYW1lIjoiSGFja2VyIiwiZW1haWwiOiJoYWNrZXJAZXhhbXBsZS5jb20iLCJyb2xlbmFtZSI6InN1cGVyYWRtaW4ifSwiZXJyb3JzIjp7ImRlZmF1bHQiOnsiZm9ybWF0IjoiOm1lc3NhZ2UiLCJtZXNzYWdlcyI6eyJyb2xlbmFtZSI6WyJUaGUgc2VsZWN0ZWQgcm9sZW5hbWUgaXMgaW52YWxpZC4iXX19fX0=',1790681930),('NMQt6rBU10ZMl3JFq4Mc504pRCXWJ7ilGcg4DAG5',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36','eyJfdG9rZW4iOiJSZWxZUFBUM2lYb1BDeG9hcGFWYjhkMU1DQnBqenFYVnRFWVhWOGZYIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDAiLCJyb3V0ZSI6bnVsbH19',1790684617),('SzqzfFUpZNKGxujDn7Is0PkQNIi0PzP6X8EBhy52',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJubk9YUmV4Z2twM2dITzdjckZ6Z0VRQ0ttYW1xVTNQVTc5THRHcjgxIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2Rhc2hib2FyZCIsInJvdXRlIjoiZGFzaGJvYXJkIn0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoyLCJwYXNzd29yZF9oYXNoX3dlYiI6IjQ3NjQ2NDRjN2NjZjE3NjA4YjdhNDVkY2U4NjFhYzlmNGE0ODJlNzQwZmMwMzRjMjgyMzFkMWM0NzUxNjUzYWEifQ==',1790757556),('vQ6RPpIts9zSchm2PMEZ8yeM0ACRT5SAbceoLqdg',1,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiI5d3hwVDBwNHVpdFRZRTZScE1yRFJVWHY3cUdMQ2lBS3FHNFdmT09VIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwicGFzc3dvcmRfaGFzaF93ZWIiOiIyOWM0NTVkZjQ5OTBkMjU0MDNiZGY1YjhhOTUzZjU2YzJmYzE1ZjgwZTBkNTUyMWUxOTk3N2VhZDM5YmJlYjZlIn0=',1790681922),('WNAVbfJEaibQwXV2MmTNwqJ5prJ2f7s223HawFz4',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJmUkxISllvS1ViYklFVGFTNGNIMEtkckYwTmxiQktvTnptUm9wUzJwIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1790684664),('wrKzp2tFXwaSR4qkMioQzTPtEScO7YWvqXPZvJkZ',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJEUkVIdVB0WVhuY1N3ZE1xNkV2Q0N2WlNOd25Talc3YXE2UWl3MjBvIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL3Byb2ZpbGUiLCJyb3V0ZSI6InByb2ZpbGUuZWRpdCJ9LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MywicGFzc3dvcmRfaGFzaF93ZWIiOiIyMGUzYzQ5OGYwMzg0NDA3YjllYjlhODQ3OGRlMDMxNGQ0ZDY1ZGUwOGQxMjNmNWU0ZGE1NTAwMGViZjMzOTdmIn0=',1790682853),('XEMpHxCkF2H4N1erbpDLLYQ1SkbIcWZGDUUwXmuO',NULL,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiJOYVhOZDBvSWkyU3RvdkEwbDdhOE5aNktwb0VHWW9TWldUS3NxYTZlIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==',1790681902);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -441,12 +441,12 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rolename` enum('magazijnmedewerker','admin','klant') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rolename` enum('magazijnmedewerker','admin','klant') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -460,13 +460,9 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'magazijnmedewerker','magazijnmedewerker@email.nl',NULL,'$2y$12$DK1F78laMevEDa4KDWRtN.XFoW.yR9p6Jv0rKsbPehTXJ0CfNVqfa','magazijnmedewerker','U2wJsPS4G3pQEzGRYNaYhUiGdzxoRrvid3m2aarfgsPk16mYAMi0HNbm4PNh','2026-09-29 09:42:31','2026-09-29 09:42:31'),(3,'admin','admin@email.nl',NULL,'$2y$12$ZGOGpMxZpyPY6wIs06sfVOYriO4HH/n5k3ARKc8iGLy63CG9KnySS','admin',NULL,'2026-09-29 09:42:55','2026-09-29 09:42:55'),(4,'klant','klant@email.nl',NULL,'$2y$12$RggMBKQHkSiQeMmMKNdKIuP.gXvaRSkh9EYTiln5cM8y7a4R4bPka','klant',NULL,'2026-09-29 09:43:12','2026-09-29 09:43:12');
+INSERT INTO `users` VALUES (2,'magazijnmedewerker','magazijnmedewerker@email.nl',NULL,'$2y$12$DK1F78laMevEDa4KDWRtN.XFoW.yR9p6Jv0rKsbPehTXJ0CfNVqfa','magazijnmedewerker','WHs29ibhbzx0sSzRsLF67Z4kNvRvDckBpldgDBZgShp2IkLIxix17xK9r5dL','2026-09-29 09:42:31','2026-09-29 09:42:31'),(3,'admin','admin@email.nl',NULL,'$2y$12$ZGOGpMxZpyPY6wIs06sfVOYriO4HH/n5k3ARKc8iGLy63CG9KnySS','admin','U2rAmINtG0vIp31xFGIqsrqDOcWMoOFHDHyF789RGgjfrJtTYTkwP9MuX26b','2026-09-29 09:42:55','2026-09-29 09:42:55'),(4,'klant','klant@email.nl',NULL,'$2y$12$RggMBKQHkSiQeMmMKNdKIuP.gXvaRSkh9EYTiln5cM8y7a4R4bPka','klant',NULL,'2026-09-29 09:43:12','2026-09-29 09:43:12');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping routines for database 'backendp1lj2'
---
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -477,4 +473,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-09-29 14:11:23
+-- Dump completed on 2026-10-01 10:28:51

@@ -55,4 +55,24 @@ class MagazijnController extends Controller
             'eerstVolgendeLevering' => $eerstVolgendeLevering,
         ]);
     }
+
+    /**
+     * Toont het detailscherm Overzicht Allergenen van het gekozen product.
+     */
+    public function allergenen(int $productId)
+    {
+        $product = $this->magazijnModel->getMagazijnByProductId($productId);
+
+        if (! $product) {
+            return redirect()->route('magazijn.index');
+        }
+
+        $allergenen = $this->magazijnModel->getAllergenenByProductId($productId);
+
+        return view('magazijn.allergenen', [
+            'title' => 'Overzicht Allergenen',
+            'product' => $product,
+            'allergenen' => $allergenen,
+        ]);
+    }
 }
