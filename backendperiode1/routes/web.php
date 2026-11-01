@@ -31,6 +31,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/leveranciers/{leverancierId}/producten', [LeverancierController::class, 'producten'])
             ->whereNumber('leverancierId')
             ->name('leverancier.producten');
+        Route::get('/leveranciers/{leverancierId}/producten/{productId}/levering', [LeverancierController::class, 'createLevering'])
+            ->whereNumber(['leverancierId', 'productId'])
+            ->name('leverancier.levering.create');
+        Route::post('/leveranciers/{leverancierId}/producten/{productId}/levering', [LeverancierController::class, 'storeLevering'])
+            ->whereNumber(['leverancierId', 'productId'])
+            ->name('leverancier.levering.store');
     });
 });
 

@@ -59,4 +59,34 @@ class LeverancierModel
 
         return $result;
     }
+
+    /**
+     * Haalt het product met de gegevens van de leverancier op voor het scherm Levering product.
+     */
+    public function getProductVanLeverancier(int $leverancierId, int $productId): object|false
+    {
+        $statement = $this->pdo->prepare('CALL spGetProductVanLeverancier(:leverancierId, :productId)');
+        $statement->bindValue(':leverancierId', $leverancierId, PDO::PARAM_INT);
+        $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return $result;
+    }
+
+    /**
+     * Voegt een nieuwe levering toe en verhoogt het aantal van het product in het magazijn.
+     */
+    public function createLevering(int $leverancierId, int $productId, int $aantal, string $datumEerstVolgendeLevering): void
+    {
+        $statement = $this->pdo->prepare('CALL spCreateLevering(:leverancierId, :productId, :aantal, :datumEerstVolgendeLevering)');
+        $statement->bindValue(':leverancierId', $leverancierId, PDO::PARAM_INT);
+        $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $statement->bindValue(':aantal', $aantal, PDO::PARAM_INT);
+        $statement->bindValue(':datumEerstVolgendeLevering', $datumEerstVolgendeLevering, PDO::PARAM_STR);
+        $statement->execute();
+        $statement->closeCursor();
+    }
 }

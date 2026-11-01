@@ -19,6 +19,7 @@
                                 <th class="border border-gray-800 px-4 py-2 text-left font-normal">Aantal in Magazijn</th>
                                 <th class="border border-gray-800 px-4 py-2 text-left font-normal">Verpakkingseenheid</th>
                                 <th class="border border-gray-800 px-4 py-2 text-left font-normal">Laatste levering</th>
+                                <th class="border border-gray-800 px-4 py-2 text-center font-normal">Nieuwe levering</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,10 +29,19 @@
                                     <td class="border border-gray-800 px-4 py-2">{{ $product->AantalAanwezig ?? 0 }}</td>
                                     <td class="border border-gray-800 px-4 py-2">{{ str_replace('.', ',', rtrim(rtrim($product->VerpakkingsEenheid, '0'), '.')) }} kg</td>
                                     <td class="border border-gray-800 px-4 py-2">{{ date('d-m-Y', strtotime($product->LaatsteLevering)) }}</td>
+                                    <td class="border border-gray-800 px-4 py-2 text-center">
+                                        <a href="{{ route('leverancier.levering.create', [$leverancier->Id, $product->ProductId]) }}" title="Nieuwe levering" class="inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                                                 fill="none" stroke="#1f2937" stroke-width="3.5" stroke-linecap="round">
+                                                <line x1="12" y1="4" x2="12" y2="20" />
+                                                <line x1="4" y1="12" x2="20" y2="12" />
+                                            </svg>
+                                        </a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="border border-gray-800 px-4 py-2 text-center">
+                                    <td colspan="5" class="border border-gray-800 px-4 py-2 text-center">
                                         Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin
                                     </td>
                                 </tr>
