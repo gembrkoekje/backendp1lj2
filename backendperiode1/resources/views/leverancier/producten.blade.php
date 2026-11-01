@@ -22,16 +22,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($producten as $product)
+                            @forelse ($producten as $product)
                                 <tr>
                                     <td class="border border-gray-800 px-4 py-2">{{ $product->Naam }}</td>
                                     <td class="border border-gray-800 px-4 py-2">{{ $product->AantalAanwezig ?? 0 }}</td>
                                     <td class="border border-gray-800 px-4 py-2">{{ str_replace('.', ',', rtrim(rtrim($product->VerpakkingsEenheid, '0'), '.')) }} kg</td>
                                     <td class="border border-gray-800 px-4 py-2">{{ date('d-m-Y', strtotime($product->LaatsteLevering)) }}</td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="border border-gray-800 px-4 py-2 text-center">
+                                        Dit bedrijf heeft tot nu toe geen producten geleverd aan Jamin
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+
+                    @if (empty($producten))
+                        <script>
+                            setTimeout(function () {
+                                window.location.href = "{{ route('leverancier.index') }}";
+                            }, 3000);
+                        </script>
+                    @endif
 
                     <div class="flex justify-end gap-3 mt-4">
                         <a href="{{ route('leverancier.index') }}" class="border border-gray-800 px-6 py-1 hover:bg-gray-100">Terug</a>
