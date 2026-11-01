@@ -86,6 +86,13 @@ class LeverancierController extends Controller
             'datum_eerstvolgende_levering.date' => 'Vul een geldige datum in.',
         ]);
 
+        // Een product dat niet meer actief is wordt niet meer geproduceerd en kan niet geleverd worden
+        if (! $product->ProductIsActief) {
+            return redirect()
+                ->route('leverancier.levering.create', [$leverancierId, $productId])
+                ->with('melding', "Het product {$product->ProductNaam} van de leverancier {$product->LeverancierNaam} wordt niet meer geproduceerd");
+        }
+
         $this->leverancierModel->createLevering(
             $leverancierId,
             $productId,

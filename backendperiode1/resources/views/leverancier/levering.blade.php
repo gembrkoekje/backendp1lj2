@@ -12,6 +12,18 @@
                         <p>Mobiel: {{ $product->Mobiel }}</p>
                     </div>
 
+                    @if (session('melding'))
+                        <div class="mb-4 border border-red-600 bg-red-50 text-red-700 px-4 py-2">
+                            {{ session('melding') }}
+                        </div>
+
+                        <script>
+                            setTimeout(function () {
+                                window.location.href = "{{ route('leverancier.producten', $product->LeverancierId) }}";
+                            }, 4000);
+                        </script>
+                    @endif
+
                     <form method="POST" action="{{ route('leverancier.levering.store', [$product->LeverancierId, $product->ProductId]) }}">
                         @csrf
 
