@@ -28,6 +28,9 @@ Route::middleware('auth')->group(function () {
             ->name('magazijn.allergenen');
 
         Route::get('/leveranciers', [LeverancierController::class, 'index'])->name('leverancier.index');
+        Route::get('/leveranciers/{leverancierId}/producten', [LeverancierController::class, 'producten'])
+            ->whereNumber('leverancierId')
+            ->name('leverancier.producten');
     });
 });
 

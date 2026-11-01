@@ -25,14 +25,14 @@
                                     <td class="border border-gray-800 px-4 py-2">{{ $leverancier->Mobiel }}</td>
                                     <td class="border border-gray-800 px-4 py-2 text-center">{{ $leverancier->AantalVerschillendeProducten }}</td>
                                     <td class="border border-gray-800 px-4 py-2 text-center">
-                                        <span title="Toon producten" class="inline-block">
+                                        <a href="{{ route('leverancier.producten', $leverancier->Id) }}" title="Toon producten" class="inline-block">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                                  fill="none" stroke="#1f2937" stroke-width="1.5" stroke-linejoin="round">
                                                 <path d="M12 2.5 3 7v10l9 4.5 9-4.5V7z" />
                                                 <path d="M3 7l9 4.5L21 7" />
                                                 <path d="M12 11.5v10" />
                                             </svg>
-                                        </span>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

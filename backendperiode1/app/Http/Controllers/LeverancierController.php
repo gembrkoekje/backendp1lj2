@@ -25,4 +25,24 @@ class LeverancierController extends Controller
             'leveranciers' => $leveranciers,
         ]);
     }
+
+    /**
+     * Toont het detailscherm Geleverde producten van de gekozen leverancier (Wireframe-02).
+     */
+    public function producten(int $leverancierId)
+    {
+        $leverancier = $this->leverancierModel->getLeverancierById($leverancierId);
+
+        if (! $leverancier) {
+            return redirect()->route('leverancier.index');
+        }
+
+        $producten = $this->leverancierModel->getGeleverdeProductenByLeverancierId($leverancierId);
+
+        return view('leverancier.producten', [
+            'title' => 'Geleverde producten',
+            'leverancier' => $leverancier,
+            'producten' => $producten,
+        ]);
+    }
 }
