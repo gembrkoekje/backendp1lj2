@@ -45,4 +45,21 @@ class LeverancierController extends Controller
             'producten' => $producten,
         ]);
     }
+
+    /**
+     * Toont het detailscherm Levering product (Wireframe-04).
+     */
+    public function createLevering(int $leverancierId, int $productId)
+    {
+        $product = $this->leverancierModel->getProductVanLeverancier($leverancierId, $productId);
+
+        if (! $product) {
+            return redirect()->route('leverancier.producten', $leverancierId);
+        }
+
+        return view('leverancier.levering', [
+            'title' => 'Levering Product',
+            'product' => $product,
+        ]);
+    }
 }
