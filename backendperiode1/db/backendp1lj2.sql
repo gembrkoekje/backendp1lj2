@@ -32,12 +32,12 @@ DROP TABLE IF EXISTS `allergeen`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `allergeen` (
   `Id` int unsigned NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Omschrijving` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Naam` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Omschrijving` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DatumAangemaakt` datetime(6) NOT NULL,
-  `DatumGewijzigd` datetime(6) NOT NULL,
+  `Opmerking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DatumAangemaakt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `DatumGewijzigd` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -48,7 +48,7 @@ CREATE TABLE `allergeen` (
 
 LOCK TABLES `allergeen` WRITE;
 /*!40000 ALTER TABLE `allergeen` DISABLE KEYS */;
-INSERT INTO `allergeen` VALUES (1,'Gluten','Dit product bevat gluten',_binary '',NULL,'2026-09-29 13:47:13.252835','2026-09-29 13:47:13.252835'),(2,'Gelatine','Dit product bevat gelatine',_binary '',NULL,'2026-09-29 13:47:13.252835','2026-09-29 13:47:13.252835'),(3,'AZO-Kleurstof','Dit product bevat AZO-kleurstoffen',_binary '',NULL,'2026-09-29 13:47:13.252835','2026-09-29 13:47:13.252835'),(4,'Lactose','Dit product bevat lactose',_binary '',NULL,'2026-09-29 13:47:13.252835','2026-09-29 13:47:13.252835'),(5,'Soja','Dit product bevat soja',_binary '',NULL,'2026-09-29 13:47:13.252835','2026-09-29 13:47:13.252835');
+INSERT INTO `allergeen` VALUES (1,'Gluten','Dit product bevat gluten',_binary '',NULL,'2026-11-01 11:32:13.618105','2026-11-01 11:32:13.618105'),(2,'Gelatine','Dit product bevat gelatine',_binary '',NULL,'2026-11-01 11:32:13.618105','2026-11-01 11:32:13.618105'),(3,'AZO-Kleurstof','Dit product bevat AZO-kleurstoffen',_binary '',NULL,'2026-11-01 11:32:13.618105','2026-11-01 11:32:13.618105'),(4,'Lactose','Dit product bevat lactose',_binary '',NULL,'2026-11-01 11:32:13.618105','2026-11-01 11:32:13.618105'),(5,'Soja','Dit product bevat soja',_binary '',NULL,'2026-11-01 11:32:13.618105','2026-11-01 11:32:13.618105');
 /*!40000 ALTER TABLE `allergeen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -201,16 +201,16 @@ DROP TABLE IF EXISTS `leverancier`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `leverancier` (
   `Id` int unsigned NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ContactPersoon` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LeverancierNummer` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Mobiel` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Naam` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ContactPersoon` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `LeverancierNummer` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Mobiel` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DatumAangemaakt` datetime(6) NOT NULL,
-  `DatumGewijzigd` datetime(6) NOT NULL,
+  `Opmerking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DatumAangemaakt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `DatumGewijzigd` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +219,7 @@ CREATE TABLE `leverancier` (
 
 LOCK TABLES `leverancier` WRITE;
 /*!40000 ALTER TABLE `leverancier` DISABLE KEYS */;
-INSERT INTO `leverancier` VALUES (1,'Venco','Bert van Linge','L1029384719','06-28493827',_binary '',NULL,'2026-09-29 13:47:13.243887','2026-09-29 13:47:13.243887'),(2,'Astra Sweets','Jasper del Monte','L1029284315','06-39398734',_binary '',NULL,'2026-09-29 13:47:13.243887','2026-09-29 13:47:13.243887'),(3,'Haribo','Sven Stalman','L1029324748','06-24383291',_binary '',NULL,'2026-09-29 13:47:13.243887','2026-09-29 13:47:13.243887'),(4,'Basset','Joyce Stelterberg','L1023845773','06-48293823',_binary '',NULL,'2026-09-29 13:47:13.243887','2026-09-29 13:47:13.243887'),(5,'De Bron','Remco Veenstra','L1023857736','06-34291234',_binary '',NULL,'2026-09-29 13:47:13.243887','2026-09-29 13:47:13.243887');
+INSERT INTO `leverancier` VALUES (1,'Venco','Bert van Linge','L1029384719','06-28493827',_binary '',NULL,'2026-11-01 11:32:13.598085','2026-11-01 11:32:13.598085'),(2,'Astra Sweets','Jasper del Monte','L1029284315','06-39398734',_binary '',NULL,'2026-11-01 11:32:13.598085','2026-11-01 11:32:13.598085'),(3,'Haribo','Sven Stalman','L1029324748','06-24383291',_binary '',NULL,'2026-11-01 11:32:13.598085','2026-11-01 11:32:13.598085'),(4,'Basset','Joyce Stelterberg','L1023845773','06-48293823',_binary '',NULL,'2026-11-01 11:32:13.598085','2026-11-01 11:32:13.598085'),(5,'De Bron','Remco Veenstra','L1023857736','06-34291234',_binary '',NULL,'2026-11-01 11:32:13.598085','2026-11-01 11:32:13.598085'),(6,'Quality Street','Johan Nooij','L1029234586','06-23458456',_binary '',NULL,'2026-11-01 11:32:13.598085','2026-11-01 11:32:13.598085');
 /*!40000 ALTER TABLE `leverancier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,9 +236,9 @@ CREATE TABLE `magazijn` (
   `VerpakkingsEenheid` decimal(6,2) NOT NULL,
   `AantalAanwezig` int unsigned DEFAULT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DatumAangemaakt` datetime(6) NOT NULL,
-  `DatumGewijzigd` datetime(6) NOT NULL,
+  `Opmerking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DatumAangemaakt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `DatumGewijzigd` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`Id`),
   KEY `FK_Magazijn_ProductId_Product_Id` (`ProductId`),
   CONSTRAINT `FK_Magazijn_ProductId_Product_Id` FOREIGN KEY (`ProductId`) REFERENCES `product` (`Id`)
@@ -251,7 +251,7 @@ CREATE TABLE `magazijn` (
 
 LOCK TABLES `magazijn` WRITE;
 /*!40000 ALTER TABLE `magazijn` DISABLE KEYS */;
-INSERT INTO `magazijn` VALUES (1,1,5.00,453,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(2,2,2.50,400,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(3,3,5.00,1,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(4,4,1.00,800,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(5,5,3.00,234,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(6,6,2.00,345,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(7,7,1.00,795,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(8,8,10.00,233,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(9,9,2.50,123,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(10,10,3.00,NULL,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(11,11,2.00,367,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(12,12,1.00,467,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638'),(13,13,5.00,20,_binary '',NULL,'2026-09-29 13:47:13.270638','2026-09-29 13:47:13.270638');
+INSERT INTO `magazijn` VALUES (1,1,5.00,453,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(2,2,2.50,400,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(3,3,5.00,1,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(4,4,1.00,800,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(5,5,3.00,234,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(6,6,2.00,345,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(7,7,1.00,795,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(8,8,10.00,233,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(9,9,2.50,123,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(10,10,3.00,NULL,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(11,11,2.00,367,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(12,12,1.00,467,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263'),(13,13,5.00,20,_binary '',NULL,'2026-11-01 11:32:13.646263','2026-11-01 11:32:13.646263');
 /*!40000 ALTER TABLE `magazijn` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,7 +267,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -276,7 +276,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(5,'2026_09_29_114554_import_database_jamin',2);
+INSERT INTO `migrations` VALUES (1,'0001_01_01_000000_create_users_table',1),(2,'0001_01_01_000001_create_cache_table',1),(3,'0001_01_01_000002_create_jobs_table',1),(14,'2026_09_29_114554_import_database_jamin',2),(15,'2026_11_01_100000_create_sp_overzicht_leverancier',2),(16,'2026_11_01_110000_create_sp_toevoegen_product',2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,12 +313,12 @@ DROP TABLE IF EXISTS `product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product` (
   `Id` int unsigned NOT NULL AUTO_INCREMENT,
-  `Naam` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Barcode` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Naam` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Barcode` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DatumAangemaakt` datetime(6) NOT NULL,
-  `DatumGewijzigd` datetime(6) NOT NULL,
+  `Opmerking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DatumAangemaakt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `DatumGewijzigd` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -329,7 +329,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Mintnopjes','8719587231278',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(2,'Schoolkrijt','8719587326713',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(3,'Honingdrop','8719587327836',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(4,'Zure Beren','8719587321441',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(5,'Cola Flesjes','8719587321237',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(6,'Turtles','8719587322245',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(7,'Witte Muizen','8719587328256',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(8,'Reuzen Slangen','8719587325641',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(9,'Zoute Rijen','8719587322739',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(10,'Winegums','8719587327527',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(11,'Drop Munten','8719587322345',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(12,'Kruis Drop','8719587322265',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794'),(13,'Zoute Ruitjes','8719587323256',_binary '',NULL,'2026-09-29 13:47:13.233794','2026-09-29 13:47:13.233794');
+INSERT INTO `product` VALUES (1,'Mintnopjes','8719587231278',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(2,'Schoolkrijt','8719587326713',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(3,'Honingdrop','8719587327836',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(4,'Zure Beren','8719587321441',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(5,'Cola Flesjes','8719587321237',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(6,'Turtles','8719587322245',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(7,'Witte Muizen','8719587328256',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(8,'Reuzen Slangen','8719587325641',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(9,'Zoute Rijen','8719587322739',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(10,'Winegums','8719587327527',_binary '\0','Wordt niet meer geproduceerd','2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(11,'Drop Munten','8719587322345',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(12,'Kruis Drop','8719587322265',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659'),(13,'Zoute Ruitjes','8719587323256',_binary '',NULL,'2026-11-01 11:32:13.547659','2026-11-01 11:32:13.547659');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,9 +345,9 @@ CREATE TABLE `productperallergeen` (
   `ProductId` int unsigned NOT NULL,
   `AllergeenId` int unsigned NOT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DatumAangemaakt` datetime(6) NOT NULL,
-  `DatumGewijzigd` datetime(6) NOT NULL,
+  `Opmerking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DatumAangemaakt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `DatumGewijzigd` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`Id`),
   KEY `FK_ProductPerAllergeen_ProductId_Product_Id` (`ProductId`),
   KEY `FK_ProductPerAllergeen_AllergeenId_Allergeen_Id` (`AllergeenId`),
@@ -362,7 +362,7 @@ CREATE TABLE `productperallergeen` (
 
 LOCK TABLES `productperallergeen` WRITE;
 /*!40000 ALTER TABLE `productperallergeen` DISABLE KEYS */;
-INSERT INTO `productperallergeen` VALUES (1,1,2,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(2,1,1,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(3,1,3,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(4,3,4,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(5,6,5,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(6,9,2,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(7,9,5,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(8,10,2,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(9,12,4,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(10,13,1,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(11,13,4,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696'),(12,13,5,_binary '',NULL,'2026-09-29 13:47:13.285696','2026-09-29 13:47:13.285696');
+INSERT INTO `productperallergeen` VALUES (1,1,2,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(2,1,1,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(3,1,3,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(4,3,4,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(5,6,5,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(6,9,2,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(7,9,5,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(8,10,2,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(9,12,4,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(10,13,1,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(11,13,4,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990'),(12,13,5,_binary '',NULL,'2026-11-01 11:32:13.683990','2026-11-01 11:32:13.683990');
 /*!40000 ALTER TABLE `productperallergeen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,9 +381,9 @@ CREATE TABLE `productperleverancier` (
   `Aantal` int unsigned NOT NULL,
   `DatumEerstVolgendeLevering` date DEFAULT NULL,
   `IsActief` bit(1) NOT NULL DEFAULT b'1',
-  `Opmerking` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DatumAangemaakt` datetime(6) NOT NULL,
-  `DatumGewijzigd` datetime(6) NOT NULL,
+  `Opmerking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `DatumAangemaakt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `DatumGewijzigd` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
   PRIMARY KEY (`Id`),
   KEY `FK_ProductPerLeverancier_LeverancierId_Leverancier_Id` (`LeverancierId`),
   KEY `FK_ProductPerLeverancier_ProductId_Product_Id` (`ProductId`),
@@ -398,7 +398,7 @@ CREATE TABLE `productperleverancier` (
 
 LOCK TABLES `productperleverancier` WRITE;
 /*!40000 ALTER TABLE `productperleverancier` DISABLE KEYS */;
-INSERT INTO `productperleverancier` VALUES (1,1,1,'2024-10-09',23,'2024-10-16',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(2,1,1,'2024-10-18',21,'2024-10-25',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(3,1,2,'2024-10-09',12,'2024-10-16',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(4,1,3,'2024-10-10',11,'2024-10-17',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(5,2,4,'2024-10-14',16,'2024-10-21',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(6,2,4,'2024-10-21',23,'2024-10-28',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(7,2,5,'2024-10-14',45,'2024-10-21',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(8,2,6,'2024-10-14',30,'2024-10-21',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(9,3,7,'2024-10-12',12,'2024-10-19',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(10,3,7,'2024-10-19',23,'2024-10-26',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(11,3,8,'2024-10-10',12,'2024-10-17',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(12,3,9,'2024-10-11',1,'2024-10-18',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(13,4,10,'2024-10-16',24,'2024-10-30',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(14,5,11,'2024-10-10',47,'2024-10-17',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(15,5,11,'2024-10-19',60,'2024-10-26',_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(16,5,12,'2024-10-11',45,NULL,_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873'),(17,5,13,'2024-10-12',23,NULL,_binary '',NULL,'2026-09-29 13:47:13.305873','2026-09-29 13:47:13.305873');
+INSERT INTO `productperleverancier` VALUES (1,1,1,'2024-11-09',23,'2024-11-16',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(2,1,1,'2024-11-18',21,'2024-11-25',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(3,1,2,'2024-11-09',12,'2024-11-16',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(4,1,3,'2024-11-10',11,'2024-11-17',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(5,2,4,'2024-11-14',16,'2024-11-21',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(6,2,4,'2024-11-21',23,'2024-11-28',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(7,2,5,'2024-11-14',45,'2024-11-21',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(8,2,6,'2024-11-14',30,'2024-11-21',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(9,3,7,'2024-11-12',12,'2024-11-19',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(10,3,7,'2024-11-19',23,'2024-11-26',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(11,3,8,'2024-11-10',12,'2024-11-17',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(12,3,9,'2024-11-11',1,'2024-11-18',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(13,4,10,'2024-11-16',24,'2024-11-30',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(14,5,11,'2024-11-10',47,'2024-11-17',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(15,5,11,'2024-11-19',60,'2024-11-26',_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(16,5,12,'2024-11-11',45,NULL,_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891'),(17,5,13,'2024-11-12',23,NULL,_binary '',NULL,'2026-11-01 11:32:13.719891','2026-11-01 11:32:13.719891');
 /*!40000 ALTER TABLE `productperleverancier` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -428,7 +428,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('Hm3DhctHVoau4GdIXhtc9RCOdGyj3uqj4OKcD4Z2',NULL,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiI2aVRUTlZkdm1qdUNqaEFORUEwT05aRmFzdGdZZUE2ZlJ0VHBrbzhWIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6WyJfb2xkX2lucHV0IiwiZXJyb3JzIl0sIm5ldyI6W119LCJfb2xkX2lucHV0Ijp7Il90b2tlbiI6IjZpVFROVmR2bWp1Q2poQU5FQTBPTlpGYXN0Z1llQTZmUnRUcGtvOFYiLCJuYW1lIjoiSGFja2VyIiwiZW1haWwiOiJoYWNrZXJAZXhhbXBsZS5jb20iLCJyb2xlbmFtZSI6InN1cGVyYWRtaW4ifSwiZXJyb3JzIjp7ImRlZmF1bHQiOnsiZm9ybWF0IjoiOm1lc3NhZ2UiLCJtZXNzYWdlcyI6eyJyb2xlbmFtZSI6WyJUaGUgc2VsZWN0ZWQgcm9sZW5hbWUgaXMgaW52YWxpZC4iXX19fX0=',1790681930),('NMQt6rBU10ZMl3JFq4Mc504pRCXWJ7ilGcg4DAG5',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36','eyJfdG9rZW4iOiJSZWxZUFBUM2lYb1BDeG9hcGFWYjhkMU1DQnBqenFYVnRFWVhWOGZYIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDAiLCJyb3V0ZSI6bnVsbH19',1790684617),('SzqzfFUpZNKGxujDn7Is0PkQNIi0PzP6X8EBhy52',2,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJubk9YUmV4Z2twM2dITzdjckZ6Z0VRQ0ttYW1xVTNQVTc5THRHcjgxIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL2Rhc2hib2FyZCIsInJvdXRlIjoiZGFzaGJvYXJkIn0sImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjoyLCJwYXNzd29yZF9oYXNoX3dlYiI6IjQ3NjQ2NDRjN2NjZjE3NjA4YjdhNDVkY2U4NjFhYzlmNGE0ODJlNzQwZmMwMzRjMjgyMzFkMWM0NzUxNjUzYWEifQ==',1790757556),('vQ6RPpIts9zSchm2PMEZ8yeM0ACRT5SAbceoLqdg',1,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiI5d3hwVDBwNHVpdFRZRTZScE1yRFJVWHY3cUdMQ2lBS3FHNFdmT09VIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MSwicGFzc3dvcmRfaGFzaF93ZWIiOiIyOWM0NTVkZjQ5OTBkMjU0MDNiZGY1YjhhOTUzZjU2YzJmYzE1ZjgwZTBkNTUyMWUxOTk3N2VhZDM5YmJlYjZlIn0=',1790681922),('WNAVbfJEaibQwXV2MmTNwqJ5prJ2f7s223HawFz4',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJmUkxISllvS1ViYklFVGFTNGNIMEtkckYwTmxiQktvTnptUm9wUzJwIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdDo4MDAwIiwicm91dGUiOm51bGx9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1790684664),('wrKzp2tFXwaSR4qkMioQzTPtEScO7YWvqXPZvJkZ',3,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:156.0) Gecko/20100101 Firefox/156.0','eyJfdG9rZW4iOiJEUkVIdVB0WVhuY1N3ZE1xNkV2Q0N2WlNOd25Talc3YXE2UWl3MjBvIiwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119LCJfcHJldmlvdXMiOnsidXJsIjoiaHR0cDpcL1wvbG9jYWxob3N0OjgwMDBcL3Byb2ZpbGUiLCJyb3V0ZSI6InByb2ZpbGUuZWRpdCJ9LCJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI6MywicGFzc3dvcmRfaGFzaF93ZWIiOiIyMGUzYzQ5OGYwMzg0NDA3YjllYjlhODQ3OGRlMDMxNGQ0ZDY1ZGUwOGQxMjNmNWU0ZGE1NTAwMGViZjMzOTdmIn0=',1790682853),('XEMpHxCkF2H4N1erbpDLLYQ1SkbIcWZGDUUwXmuO',NULL,'127.0.0.1','curl/8.18.0','eyJfdG9rZW4iOiJOYVhOZDBvSWkyU3RvdkEwbDdhOE5aNktwb0VHWW9TWldUS3NxYTZlIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cLzEyNy4wLjAuMTo4MDAwXC9yZWdpc3RlciIsInJvdXRlIjoicmVnaXN0ZXIifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==',1790681902);
+INSERT INTO `sessions` VALUES ('CSPb1acCArpUCnICtlDEgtyJUZ5vJQHuFIxmIlb0',2,'127.0.0.1','Symfony','eyJfdG9rZW4iOiJoTlMxZGxIS0hkZlBHaW9OcExvSkEwMjZNRHhJVkJId1Z2ak01SlRqIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvbGV2ZXJhbmNpZXJzXC80XC9wcm9kdWN0ZW4iLCJyb3V0ZSI6ImxldmVyYW5jaWVyLnByb2R1Y3RlbiJ9LCJfZmxhc2giOnsib2xkIjpbIl9vbGRfaW5wdXQiLCJlcnJvcnMiXSwibmV3IjpbXX0sIl9vbGRfaW5wdXQiOnsiYWFudGFsIjpudWxsLCJkYXR1bV9lZXJzdHZvbGdlbmRlX2xldmVyaW5nIjpudWxsfSwiZXJyb3JzIjp7ImRlZmF1bHQiOnsiZm9ybWF0IjoiOm1lc3NhZ2UiLCJtZXNzYWdlcyI6eyJhYW50YWwiOlsiVnVsIGhldCBhYW50YWwgcHJvZHVjdGVlbmhlZGVuIGluLiJdLCJkYXR1bV9lZXJzdHZvbGdlbmRlX2xldmVyaW5nIjpbIlZ1bCBkZSBkYXR1bSB2YW4gZGUgZWVyc3R2b2xnZW5kZSBsZXZlcmluZyBpbi4iXX19fX0=',1793529011),('DLvxiR2YYsghheXNZbPVhXi5ZF4BQrwby6I2q9nM',2,'127.0.0.1','Symfony','eyJfdG9rZW4iOiJDeXVhN1doS2xodno0Nkl2WkpZd1B1VUZkaUtrVmZSeG56NDk2U29QIiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvZGFzaGJvYXJkIiwicm91dGUiOiJkYXNoYm9hcmQifSwiX2ZsYXNoIjp7Im9sZCI6W10sIm5ldyI6W119fQ==',1793529000),('mNDresSlt0bnpTCmONnrOtFCrJHAs738yzJLq9SJ',4,'127.0.0.1','Symfony','eyJfdG9rZW4iOiJWQ0cyMGV5aWlyR05yMGNsR1NsaHQzc1ZEVElTQUFjV1B6dGEySUw2IiwiX3ByZXZpb3VzIjp7InVybCI6Imh0dHA6XC9cL2xvY2FsaG9zdFwvbGV2ZXJhbmNpZXJzIiwicm91dGUiOiJsZXZlcmFuY2llci5pbmRleCJ9LCJfZmxhc2giOnsib2xkIjpbXSwibmV3IjpbXX19',1793529132);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -460,9 +460,214 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'magazijnmedewerker','magazijnmedewerker@email.nl',NULL,'$2y$12$DK1F78laMevEDa4KDWRtN.XFoW.yR9p6Jv0rKsbPehTXJ0CfNVqfa','magazijnmedewerker','WHs29ibhbzx0sSzRsLF67Z4kNvRvDckBpldgDBZgShp2IkLIxix17xK9r5dL','2026-09-29 09:42:31','2026-09-29 09:42:31'),(3,'admin','admin@email.nl',NULL,'$2y$12$ZGOGpMxZpyPY6wIs06sfVOYriO4HH/n5k3ARKc8iGLy63CG9KnySS','admin','U2rAmINtG0vIp31xFGIqsrqDOcWMoOFHDHyF789RGgjfrJtTYTkwP9MuX26b','2026-09-29 09:42:55','2026-09-29 09:42:55'),(4,'klant','klant@email.nl',NULL,'$2y$12$RggMBKQHkSiQeMmMKNdKIuP.gXvaRSkh9EYTiln5cM8y7a4R4bPka','klant',NULL,'2026-09-29 09:43:12','2026-09-29 09:43:12');
+INSERT INTO `users` VALUES (2,'magazijnmedewerker','magazijnmedewerker@email.nl',NULL,'$2y$12$DK1F78laMevEDa4KDWRtN.XFoW.yR9p6Jv0rKsbPehTXJ0CfNVqfa','magazijnmedewerker','IzSssfy4QpItwin5H0y6vYXJ7Mo86FZ1Irhcd5uLh4T5cxCQN0AG5laZuFOG','2026-09-29 09:42:31','2026-09-29 09:42:31'),(3,'admin','admin@email.nl',NULL,'$2y$12$ZGOGpMxZpyPY6wIs06sfVOYriO4HH/n5k3ARKc8iGLy63CG9KnySS','admin','IEQAPMkSoztDB1CrdVdcoIzENQZ6q7mjYg36Wr2rg8wB46ggxLPWO3xPDixj','2026-09-29 09:42:55','2026-09-29 09:42:55'),(4,'klant','klant@email.nl',NULL,'$2y$12$RggMBKQHkSiQeMmMKNdKIuP.gXvaRSkh9EYTiln5cM8y7a4R4bPka','klant',NULL,'2026-09-29 09:43:12','2026-09-29 09:43:12');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping routines for database 'backendp1lj2'
+--
+/*!50003 DROP PROCEDURE IF EXISTS `spCreateLevering` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spCreateLevering`(
+     IN p_LeverancierId                 INT UNSIGNED
+    ,IN p_ProductId                     INT UNSIGNED
+    ,IN p_Aantal                        INT UNSIGNED
+    ,IN p_DatumEerstVolgendeLevering    DATE
+)
+BEGIN
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    IF NOT EXISTS (SELECT 1 FROM Product WHERE Id = p_ProductId AND IsActief = 1) THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Het product wordt niet meer geproduceerd';
+    END IF;
+
+    START TRANSACTION;
+
+    INSERT INTO ProductPerLeverancier
+    (
+         LeverancierId
+        ,ProductId
+        ,DatumLevering
+        ,Aantal
+        ,DatumEerstVolgendeLevering
+        ,IsActief
+        ,Opmerking
+        ,DatumAangemaakt
+        ,DatumGewijzigd
+    )
+    VALUES
+    (
+         p_LeverancierId
+        ,p_ProductId
+        ,CURDATE()
+        ,p_Aantal
+        ,p_DatumEerstVolgendeLevering
+        ,1
+        ,NULL
+        ,NOW(6)
+        ,NOW(6)
+    );
+
+    UPDATE   Magazijn
+    SET      AantalAanwezig = IFNULL(AantalAanwezig, 0) + p_Aantal
+            ,DatumGewijzigd = NOW(6)
+    WHERE    ProductId      = p_ProductId;
+
+    COMMIT;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spGetAllLeveranciers` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetAllLeveranciers`()
+BEGIN
+    SELECT   LEVE.Id
+            ,LEVE.Naam
+            ,LEVE.ContactPersoon
+            ,LEVE.LeverancierNummer
+            ,LEVE.Mobiel
+            ,COUNT(DISTINCT PPLE.ProductId)     AS AantalVerschillendeProducten
+    FROM     Leverancier AS LEVE
+    LEFT JOIN ProductPerLeverancier AS PPLE
+           ON PPLE.LeverancierId = LEVE.Id
+    WHERE    LEVE.IsActief = 1
+    GROUP BY LEVE.Id
+            ,LEVE.Naam
+            ,LEVE.ContactPersoon
+            ,LEVE.LeverancierNummer
+            ,LEVE.Mobiel
+    ORDER BY AantalVerschillendeProducten DESC
+            ,LEVE.Naam ASC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spGetGeleverdeProductenByLeverancierId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetGeleverdeProductenByLeverancierId`(
+    IN p_LeverancierId INT UNSIGNED
+)
+BEGIN
+    SELECT   PROD.Id                    AS ProductId
+            ,PROD.Naam
+            ,MAGA.AantalAanwezig
+            ,MAGA.VerpakkingsEenheid
+            ,MAX(PPLE.DatumLevering)    AS LaatsteLevering
+    FROM     ProductPerLeverancier AS PPLE
+    INNER JOIN Product AS PROD
+            ON PROD.Id = PPLE.ProductId
+    LEFT JOIN Magazijn AS MAGA
+            ON MAGA.ProductId = PROD.Id
+    WHERE    PPLE.LeverancierId = p_LeverancierId
+    GROUP BY PROD.Id
+            ,PROD.Naam
+            ,MAGA.AantalAanwezig
+            ,MAGA.VerpakkingsEenheid
+    ORDER BY MAGA.AantalAanwezig DESC;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spGetLeverancierById` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetLeverancierById`(
+    IN p_LeverancierId INT UNSIGNED
+)
+BEGIN
+    SELECT   LEVE.Id
+            ,LEVE.Naam
+            ,LEVE.ContactPersoon
+            ,LEVE.LeverancierNummer
+            ,LEVE.Mobiel
+    FROM     Leverancier AS LEVE
+    WHERE    LEVE.Id = p_LeverancierId;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `spGetProductVanLeverancier` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetProductVanLeverancier`(
+     IN p_LeverancierId INT UNSIGNED
+    ,IN p_ProductId     INT UNSIGNED
+)
+BEGIN
+    SELECT   PROD.Id                AS ProductId
+            ,PROD.Naam              AS ProductNaam
+            ,PROD.IsActief + 0      AS ProductIsActief
+            ,LEVE.Id                AS LeverancierId
+            ,LEVE.Naam              AS LeverancierNaam
+            ,LEVE.ContactPersoon
+            ,LEVE.Mobiel
+    FROM     Leverancier AS LEVE
+    INNER JOIN ProductPerLeverancier AS PPLE
+            ON PPLE.LeverancierId = LEVE.Id
+    INNER JOIN Product AS PROD
+            ON PROD.Id = PPLE.ProductId
+    WHERE    LEVE.Id   = p_LeverancierId
+      AND    PROD.Id   = p_ProductId
+    LIMIT    1;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -473,4 +678,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-10-01 10:28:51
+-- Dump completed on 2026-11-01 11:32:19
