@@ -12,8 +12,16 @@
                         <p>Mobiel: {{ $product->Mobiel }}</p>
                     </div>
 
-                    <form method="POST" action="#">
+                    <form method="POST" action="{{ route('leverancier.levering.store', [$product->LeverancierId, $product->ProductId]) }}">
                         @csrf
+
+                        @if ($errors->any())
+                            <div class="mb-4 text-red-600">
+                                @foreach ($errors->all() as $error)
+                                    <p>{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
 
                         <div class="flex items-center mb-3">
                             <label for="aantal" class="w-56">Aantal producteenheden</label>
