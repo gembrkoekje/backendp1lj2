@@ -33,7 +33,9 @@
                         </tbody>
                     </table>
 
-                    @if (empty($allergenen))
+                    {{ $allergenen->links('pagination.jamin') }}
+
+                    @if ($allergenen->isEmpty())
                         <script>
                             setTimeout(function () {
                                 window.location.href = "{{ route('magazijn.index') }}";

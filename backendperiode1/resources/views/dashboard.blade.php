@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Homepagina') }}
         </h2>
     </x-slot>
 
@@ -16,6 +16,11 @@
                         <a href="{{ route('magazijn.index') }}" class="text-blue-600 underline">Overzicht Magazijn Jamin</a>
                         <br>
                         <a href="{{ route('leverancier.index') }}" class="text-blue-600 underline">Overzicht Leveranciers</a>
+                    @endif
+
+                    @if (Auth::user()->magLeveranciersWijzigen())
+                        <br>
+                        <a href="{{ route('leverancier.wijzigen.index') }}" class="text-blue-600 underline">Wijzigen Leveranciers</a>
                     @endif
                 </div>
             </div>

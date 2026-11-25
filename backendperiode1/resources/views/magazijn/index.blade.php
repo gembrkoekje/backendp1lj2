@@ -46,6 +46,8 @@
                             @endforelse
                         </tbody>
                     </table>
+
+                    {{ $producten->links('pagination.jamin') }}
                 </div>
             </div>
         </div>

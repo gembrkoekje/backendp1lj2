@@ -6,6 +6,7 @@
 -- Version       Date:           Author:                     Description:
 -- *******       **********      ****************            ******************
 -- 01            01-11-2026      Backend LJ2                 New
+-- 02            25-11-2026      Backend LJ2                 Pagination (LIMIT en OFFSET), ook niet-actieve leveranciers
 -- **********************************************************************************/
 
 USE backendp1lj2;
@@ -14,7 +15,11 @@ DROP PROCEDURE IF EXISTS spGetAllLeveranciers;
 
 DELIMITER $$
 
-CREATE PROCEDURE spGetAllLeveranciers()
+CREATE PROCEDURE spGetAllLeveranciers
+(
+     IN p_Limit   INT UNSIGNED
+    ,IN p_Offset  INT UNSIGNED
+)
 BEGIN
     SELECT   LEVE.Id
             ,LEVE.Naam
@@ -25,14 +30,15 @@ BEGIN
     FROM     Leverancier AS LEVE
     LEFT JOIN ProductPerLeverancier AS PPLE
            ON PPLE.LeverancierId = LEVE.Id
-    WHERE    LEVE.IsActief = 1
     GROUP BY LEVE.Id
             ,LEVE.Naam
             ,LEVE.ContactPersoon
             ,LEVE.LeverancierNummer
             ,LEVE.Mobiel
     ORDER BY AantalVerschillendeProducten DESC
-            ,LEVE.Naam ASC;
+            ,LEVE.Naam ASC
+    LIMIT    p_Limit
+    OFFSET   p_Offset;
 END$$
 
 DELIMITER ;
@@ -77,6 +83,7 @@ DELIMITER ;
 -- Version       Date:           Author:                     Description:
 -- *******       **********      ****************            ******************
 -- 01            01-11-2026      Backend LJ2                 New
+-- 02            25-11-2026      Backend LJ2                 Pagination (LIMIT en OFFSET)
 -- **********************************************************************************/
 
 DROP PROCEDURE IF EXISTS spGetGeleverdeProductenByLeverancierId;
@@ -85,7 +92,9 @@ DELIMITER $$
 
 CREATE PROCEDURE spGetGeleverdeProductenByLeverancierId
 (
-    IN p_LeverancierId INT UNSIGNED
+     IN p_LeverancierId  INT UNSIGNED
+    ,IN p_Limit          INT UNSIGNED
+    ,IN p_Offset         INT UNSIGNED
 )
 BEGIN
     SELECT   PROD.Id                    AS ProductId
@@ -103,7 +112,10 @@ BEGIN
             ,PROD.Naam
             ,MAGA.AantalAanwezig
             ,MAGA.VerpakkingsEenheid
-    ORDER BY MAGA.AantalAanwezig DESC;
+    ORDER BY MAGA.AantalAanwezig DESC
+            ,PROD.Naam ASC
+    LIMIT    p_Limit
+    OFFSET   p_Offset;
 END$$
 
 DELIMITER ;

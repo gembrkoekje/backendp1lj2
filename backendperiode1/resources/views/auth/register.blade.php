@@ -49,6 +49,7 @@
                 <option value="magazijnmedewerker" {{ old('rolename') == 'magazijnmedewerker' ? 'selected' : '' }}>{{ __('Magazijnmedewerker') }}</option>
                 <option value="admin" {{ old('rolename') == 'admin' ? 'selected' : '' }}>{{ __('Admin') }}</option>
                 <option value="klant" {{ old('rolename') == 'klant' ? 'selected' : '' }}>{{ __('Klant') }}</option>
+                <option value="manager" {{ old('rolename') == 'manager' ? 'selected' : '' }}>{{ __('Manager') }}</option>
             </select>
 
             <x-input-error :messages="$errors->get('rolename')" class="mt-2" />
