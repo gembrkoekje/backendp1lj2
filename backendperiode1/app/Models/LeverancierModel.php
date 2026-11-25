@@ -21,12 +21,14 @@ class LeverancierModel
     }
 
     /**
-     * Haalt alle leveranciers op met het aantal verschillende producten dat zij leveren,
+     * Haalt één pagina leveranciers op met het aantal verschillende producten dat zij leveren,
      * gesorteerd op Aantal verschillende producten aflopend.
      */
-    public function getAllLeveranciers(): array
+    public function getAllLeveranciers(int $limit, int $offset): array
     {
-        $statement = $this->pdo->prepare('CALL spGetAllLeveranciers()');
+        $statement = $this->pdo->prepare('CALL spGetAllLeveranciers(:limit, :offset)');
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
         $statement->execute();
 
         $result = $statement->fetchAll(PDO::FETCH_OBJ);
@@ -51,19 +53,36 @@ class LeverancierModel
     }
 
     /**
-     * Haalt de verschillende producten op die de leverancier aan Jamin levert,
+     * Haalt één pagina verschillende producten op die de leverancier aan Jamin levert,
      * gesorteerd op Aantal in magazijn aflopend.
      */
-    public function getGeleverdeProductenByLeverancierId(int $leverancierId): array
+    public function getGeleverdeProductenByLeverancierId(int $leverancierId, int $limit, int $offset): array
     {
-        $statement = $this->pdo->prepare('CALL spGetGeleverdeProductenByLeverancierId(:leverancierId)');
+        $statement = $this->pdo->prepare('CALL spGetGeleverdeProductenByLeverancierId(:leverancierId, :limit, :offset)');
         $statement->bindValue(':leverancierId', $leverancierId, PDO::PARAM_INT);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
         $statement->execute();
 
         $result = $statement->fetchAll(PDO::FETCH_OBJ);
         $statement->closeCursor();
 
         return $result;
+    }
+
+    /**
+     * Telt het aantal verschillende producten dat de leverancier aan Jamin levert.
+     */
+    public function getAantalGeleverdeProducten(int $leverancierId): int
+    {
+        $statement = $this->pdo->prepare('CALL spCountGeleverdeProductenByLeverancierId(:leverancierId)');
+        $statement->bindValue(':leverancierId', $leverancierId, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return (int) $result->Totaal;
     }
 
     /**

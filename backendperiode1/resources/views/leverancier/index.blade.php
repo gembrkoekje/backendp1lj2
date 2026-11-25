@@ -45,6 +45,8 @@
                         </tbody>
                     </table>
 
+                    {{ $leveranciers->links('pagination.jamin') }}
+
                     <div class="flex justify-end mt-4">
                         <a href="{{ route('dashboard') }}" class="border border-gray-800 px-6 py-1 hover:bg-gray-100">Home</a>
                     </div>

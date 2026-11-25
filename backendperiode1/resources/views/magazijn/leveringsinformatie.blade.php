@@ -52,6 +52,10 @@
                         </tbody>
                     </table>
 
+                    @unless ($geenVoorraad)
+                        {{ $leveringen->links('pagination.jamin') }}
+                    @endunless
+
                     @if ($geenVoorraad)
                         <script>
                             setTimeout(function () {

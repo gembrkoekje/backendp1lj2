@@ -20,7 +20,10 @@ class LeverancierController extends Controller
      */
     public function index()
     {
-        $leveranciers = $this->leverancierModel->getAllLeveranciers();
+        $leveranciers = $this->pagineer(
+            $this->leverancierModel->getAantalLeveranciers(),
+            fn (int $limit, int $offset) => $this->leverancierModel->getAllLeveranciers($limit, $offset),
+        );
 
         return view('leverancier.index', [
             'title' => 'Overzicht leveranciers',
@@ -39,7 +42,10 @@ class LeverancierController extends Controller
             return redirect()->route('leverancier.index');
         }
 
-        $producten = $this->leverancierModel->getGeleverdeProductenByLeverancierId($leverancierId);
+        $producten = $this->pagineer(
+            $this->leverancierModel->getAantalGeleverdeProducten($leverancierId),
+            fn (int $limit, int $offset) => $this->leverancierModel->getGeleverdeProductenByLeverancierId($leverancierId, $limit, $offset),
+        );
 
         return view('leverancier.producten', [
             'title' => 'Geleverde producten',
