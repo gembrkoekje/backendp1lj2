@@ -49,7 +49,9 @@
                         </tbody>
                     </table>
 
-                    @if (empty($producten))
+                    {{ $producten->links('pagination.jamin') }}
+
+                    @if ($producten->isEmpty())
                         <script>
                             setTimeout(function () {
                                 window.location.href = "{{ route('leverancier.index') }}";

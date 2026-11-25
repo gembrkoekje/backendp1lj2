@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return $this->hasRole('admin', 'magazijnmedewerker');
     }
+
+    /**
+     * Controleert of de gebruiker leveranciergegevens mag wijzigen.
+     */
+    public function magLeveranciersWijzigen(): bool
+    {
+        return $this->hasRole('admin', 'manager');
+    }
 }

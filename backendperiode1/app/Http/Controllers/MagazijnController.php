@@ -18,7 +18,10 @@ class MagazijnController extends Controller
      */
     public function index()
     {
-        $producten = $this->magazijnModel->getMagazijnOverzicht();
+        $producten = $this->pagineer(
+            $this->magazijnModel->getAantalMagazijn(),
+            fn (int $limit, int $offset) => $this->magazijnModel->getMagazijnOverzicht($limit, $offset),
+        );
 
         return view('magazijn.index', [
             'title' => 'Overzicht Magazijn Jamin',
@@ -38,13 +41,19 @@ class MagazijnController extends Controller
         }
 
         $leverancier = $this->magazijnModel->getLeverancierByProductId($productId);
-        $leveringen = $this->magazijnModel->getLeveringenByProductId($productId);
+        $aantalLeveringen = $this->magazijnModel->getAantalLeveringen($productId);
+        $leveringen = $this->pagineer(
+            $aantalLeveringen,
+            fn (int $limit, int $offset) => $this->magazijnModel->getLeveringenByProductId($productId, $limit, $offset),
+        );
 
         $geenVoorraad = empty($product->AantalAanwezig);
         $eerstVolgendeLevering = null;
 
-        if ($geenVoorraad && ! empty($leveringen)) {
-            $eerstVolgendeLevering = end($leveringen)->DatumEerstVolgendeLevering;
+        // De laatste levering staat op de laatste pagina, daarom wordt deze apart opgehaald
+        if ($geenVoorraad && $aantalLeveringen > 0) {
+            [$laatsteLevering] = $this->magazijnModel->getLeveringenByProductId($productId, 1, $aantalLeveringen - 1);
+            $eerstVolgendeLevering = $laatsteLevering->DatumEerstVolgendeLevering;
         }
 
         return view('magazijn.leveringsinformatie', [
@@ -67,7 +76,10 @@ class MagazijnController extends Controller
             return redirect()->route('magazijn.index');
         }
 
-        $allergenen = $this->magazijnModel->getAllergenenByProductId($productId);
+        $allergenen = $this->pagineer(
+            $this->magazijnModel->getAantalAllergenen($productId),
+            fn (int $limit, int $offset) => $this->magazijnModel->getAllergenenByProductId($productId, $limit, $offset),
+        );
 
         return view('magazijn.allergenen', [
             'title' => 'Overzicht Allergenen',

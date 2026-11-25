@@ -15,24 +15,33 @@ class MagazijnModel
     }
 
     /**
-     * Haalt alle producten in het magazijn op, gesorteerd op barcode oplopend.
+     * Telt het totaal aantal producten in het magazijn.
      */
-    public function getMagazijnOverzicht(): array
+    public function getAantalMagazijn(): int
     {
-        $sql = "SELECT  PROD.Id
-                       ,PROD.Naam
-                       ,PROD.Barcode
-                       ,MAGA.VerpakkingsEenheid
-                       ,MAGA.AantalAanwezig
-                FROM    Magazijn AS MAGA
-                INNER JOIN Product AS PROD
-                        ON PROD.Id = MAGA.ProductId
-                ORDER BY PROD.Barcode ASC";
-
-        $statement = $this->pdo->prepare($sql);
+        $statement = $this->pdo->prepare('CALL spCountMagazijn()');
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        $result = $statement->fetch(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return (int) $result->Totaal;
+    }
+
+    /**
+     * Haalt één pagina producten in het magazijn op, gesorteerd op barcode oplopend.
+     */
+    public function getMagazijnOverzicht(int $limit, int $offset): array
+    {
+        $statement = $this->pdo->prepare('CALL spGetMagazijnOverzicht(:limit, :offset)');
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return $result;
     }
 
     /**
@@ -81,44 +90,66 @@ class MagazijnModel
     }
 
     /**
-     * Haalt alle leveringen van het gekozen product op, gesorteerd op datum laatste levering oplopend.
+     * Telt het totaal aantal leveringen van het gekozen product.
      */
-    public function getLeveringenByProductId(int $productId): array
+    public function getAantalLeveringen(int $productId): int
     {
-        $sql = "SELECT  PROD.Naam
-                       ,PPLE.DatumLevering
-                       ,PPLE.Aantal
-                       ,PPLE.DatumEerstVolgendeLevering
-                FROM    ProductPerLeverancier AS PPLE
-                INNER JOIN Product AS PROD
-                        ON PROD.Id = PPLE.ProductId
-                WHERE   PPLE.ProductId = :productId
-                ORDER BY PPLE.DatumLevering ASC";
-
-        $statement = $this->pdo->prepare($sql);
+        $statement = $this->pdo->prepare('CALL spCountLeveringenByProductId(:productId)');
         $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        $result = $statement->fetch(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return (int) $result->Totaal;
     }
 
     /**
-     * Haalt alle allergenen van het gekozen product op, gesorteerd op naam oplopend.
+     * Haalt één pagina leveringen van het gekozen product op, gesorteerd op datum laatste levering oplopend.
      */
-    public function getAllergenenByProductId(int $productId): array
+    public function getLeveringenByProductId(int $productId, int $limit, int $offset): array
     {
-        $sql = "SELECT  ALLE.Naam
-                       ,ALLE.Omschrijving
-                FROM    ProductPerAllergeen AS PPAL
-                INNER JOIN Allergeen AS ALLE
-                        ON ALLE.Id = PPAL.AllergeenId
-                WHERE   PPAL.ProductId = :productId
-                ORDER BY ALLE.Naam ASC";
+        $statement = $this->pdo->prepare('CALL spGetLeveringenByProductId(:productId, :limit, :offset)');
+        $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
 
-        $statement = $this->pdo->prepare($sql);
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return $result;
+    }
+
+    /**
+     * Telt het totaal aantal allergenen van het gekozen product.
+     */
+    public function getAantalAllergenen(int $productId): int
+    {
+        $statement = $this->pdo->prepare('CALL spCountAllergenenByProductId(:productId)');
         $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
         $statement->execute();
 
-        return $statement->fetchAll(PDO::FETCH_OBJ);
+        $result = $statement->fetch(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return (int) $result->Totaal;
+    }
+
+    /**
+     * Haalt één pagina allergenen van het gekozen product op, gesorteerd op naam oplopend.
+     */
+    public function getAllergenenByProductId(int $productId, int $limit, int $offset): array
+    {
+        $statement = $this->pdo->prepare('CALL spGetAllergenenByProductId(:productId, :limit, :offset)');
+        $statement->bindValue(':productId', $productId, PDO::PARAM_INT);
+        $statement->bindValue(':limit', $limit, PDO::PARAM_INT);
+        $statement->bindValue(':offset', $offset, PDO::PARAM_INT);
+        $statement->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_OBJ);
+        $statement->closeCursor();
+
+        return $result;
     }
 }

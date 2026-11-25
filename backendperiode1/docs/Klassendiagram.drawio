@@ -1,0 +1,132 @@
+<mxfile host="Electron" version="28.0.6">
+  <diagram id="jaminKlassendiagram" name="Pagina-1">
+    <mxGraphModel dx="1281" dy="756" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="view" value='&lt;p style="margin:0px;margin-top:6px;text-align:center;"&gt;&lt;b&gt;View&lt;/b&gt;&lt;/p&gt;&lt;hr size="1" style="border-style:solid;"&gt;&lt;p style="margin:0px;margin-left:8px;"&gt;+ data: array[mixed]&lt;/p&gt;' style="align=left;overflow=fill;html=1;dropTarget=0;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="60" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="viewi" value="" style="shape=component;jettyWidth=8;jettyHeight=4;" parent="view" vertex="1">
+          <mxGeometry x="1" width="20" height="20" relative="1" as="geometry">
+            <mxPoint x="-24" y="4" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ctrl" value="Controller" style="swimlane;fontStyle=3;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="520" y="40" width="400" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrla" value="# RECORDS_PER_PAGINA: int = 4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="ctrl" vertex="1">
+          <mxGeometry x="0" y="26" width="400" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrll" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="ctrl" vertex="1">
+          <mxGeometry x="0" y="51" width="400" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="ctrlo" value="# pagineer(totaal: int, haalRecordsOp: Closure): LengthAwarePaginator" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="ctrl" vertex="1">
+          <mxGeometry x="0" y="59" width="400" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="lc" value="LeverancierController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="330" y="230" width="400" height="234" as="geometry" />
+        </mxCell>
+        <mxCell id="lca" value="- leverancierModel: LeverancierModel" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="lc" vertex="1">
+          <mxGeometry x="0" y="26" width="400" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="lcl" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="lc" vertex="1">
+          <mxGeometry x="0" y="51" width="400" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="lco" value="+ __construct(): void&#10;+ index(): View&#10;+ producten(leverancierId: int): View&#10;+ createLevering(leverancierId: int, productId: int): View&#10;+ storeLevering(request: Request, leverancierId: int,&#10;           productId: int): RedirectResponse&#10;+ wijzigenOverzicht(): View&#10;+ details(leverancierId: int): View&#10;+ edit(leverancierId: int): View&#10;+ update(request: LeverancierUpdateRequest,&#10;           leverancierId: int): RedirectResponse" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="lc" vertex="1">
+          <mxGeometry x="0" y="59" width="400" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="mc" value="MagazijnController" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="800" y="230" width="320" height="129" as="geometry" />
+        </mxCell>
+        <mxCell id="mca" value="- magazijnModel: MagazijnModel" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mc" vertex="1">
+          <mxGeometry x="0" y="26" width="320" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="mcl" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="mc" vertex="1">
+          <mxGeometry x="0" y="51" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="mco" value="+ __construct(): void&#10;+ index(): View&#10;+ leveringsinformatie(productId: int): View&#10;+ allergenen(productId: int): View" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mc" vertex="1">
+          <mxGeometry x="0" y="59" width="320" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="req" value="LeverancierUpdateRequest" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="330" width="220" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="reqo" value="+ rules(): array[mixed]&#10;+ messages(): array[string]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="req" vertex="1">
+          <mxGeometry x="0" y="26" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fr" value="FormRequest" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="210" width="220" height="51" as="geometry" />
+        </mxCell>
+        <mxCell id="fro" value="+ validated(): array[mixed]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="fr" vertex="1">
+          <mxGeometry x="0" y="26" width="220" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="lm" value="LeverancierModel" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="330" y="530" width="400" height="294" as="geometry" />
+        </mxCell>
+        <mxCell id="lma" value="- pdo: PDO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="lm" vertex="1">
+          <mxGeometry x="0" y="26" width="400" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="lml" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="lm" vertex="1">
+          <mxGeometry x="0" y="51" width="400" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="lmo" value="+ __construct(pdo: PDO = null): void&#10;+ getAllLeveranciers(limit: int, offset: int): array[object]&#10;+ getLeverancierById(leverancierId: int): object&#10;+ getGeleverdeProductenByLeverancierId(leverancierId: int,&#10;           limit: int, offset: int): array[object]&#10;+ getAantalGeleverdeProducten(leverancierId: int): int&#10;+ getProductVanLeverancier(leverancierId: int,&#10;           productId: int): object&#10;+ createLevering(leverancierId: int, productId: int, aantal: int,&#10;           datumEerstVolgendeLevering: string): void&#10;+ getAantalLeveranciers(): int&#10;+ getLeveranciersWijzigen(limit: int, offset: int): array[object]&#10;+ getLeverancierDetailsById(leverancierId: int): object&#10;+ updateLeverancier(leverancierId: int,&#10;           gegevens: array[string]): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="lm" vertex="1">
+          <mxGeometry x="0" y="59" width="400" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="mm" value="MagazijnModel" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="800" y="530" width="320" height="249" as="geometry" />
+        </mxCell>
+        <mxCell id="mma" value="- pdo: PDO" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mm" vertex="1">
+          <mxGeometry x="0" y="26" width="320" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="mml" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="mm" vertex="1">
+          <mxGeometry x="0" y="51" width="320" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="mmo" value="+ __construct(): void&#10;+ getAantalMagazijn(): int&#10;+ getMagazijnOverzicht(limit: int,&#10;           offset: int): array[object]&#10;+ getMagazijnByProductId(productId: int): object&#10;+ getLeverancierByProductId(productId: int): object&#10;+ getAantalLeveringen(productId: int): int&#10;+ getLeveringenByProductId(productId: int,&#10;           limit: int, offset: int): array[object]&#10;+ getAantalAllergenen(productId: int): int&#10;+ getAllergenenByProductId(productId: int,&#10;           limit: int, offset: int): array[object]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="mm" vertex="1">
+          <mxGeometry x="0" y="59" width="320" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="pdo" value="PDO" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="900" width="250" height="111" as="geometry" />
+        </mxCell>
+        <mxCell id="pdoo" value="+ PDO(conn: string,&#10;            dbUser: string,&#10;            dbPass: string,&#10;            options: array): void&#10;+ prepare(sql: string): PDOStatement" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="pdo" vertex="1">
+          <mxGeometry x="0" y="26" width="250" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="st" value="PDOStatement" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="900" width="220" height="141" as="geometry" />
+        </mxCell>
+        <mxCell id="sto" value="+ bindValue(parameter: string,&#10;                    value: mixed,&#10;                    type: int): boolean&#10;+ execute(): boolean&#10;+ fetch(): object&#10;+ fetchAll(): array[mixed]&#10;+ closeCursor(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="st" vertex="1">
+          <mxGeometry x="0" y="26" width="220" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="lc" target="ctrl" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="e12" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" parent="1" source="mc" target="ctrl" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"><Array as="points"><mxPoint x="960" y="190" /><mxPoint x="820" y="190" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e13" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="req" target="fr" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="e14" value="" style="endArrow=open;endFill=1;endSize=12;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.15;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="lc" target="view" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"><Array as="points"><mxPoint x="390" y="90" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e15" value="" style="endArrow=open;endFill=1;endSize=12;dashed=1;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0;exitY=0.55;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="lc" target="req" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="e16" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="lc" target="lm" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="e17" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="mc" target="mm" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+        <mxCell id="e18" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="lm" target="pdo" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"><Array as="points"><mxPoint x="530" y="956" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e19" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;" parent="1" source="mm" target="pdo" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"><Array as="points"><mxPoint x="960" y="840" /><mxPoint x="840" y="840" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e20" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.46;entryDx=0;entryDy=0;" parent="1" source="pdo" target="st" edge="1">
+          <mxGeometry width="160" relative="1" as="geometry"></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

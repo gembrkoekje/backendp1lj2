@@ -6,6 +6,9 @@
 -- 01            29-09-2026      Backend LJ2                 New
 -- 02            01-11-2026      Backend LJ2                 Leverancier Quality Street toegevoegd,
 --                                                           Winegums IsActief = 0, Opmerking VARCHAR(255)
+-- 03            25-11-2026      Backend LJ2                 Tabel Contact toegevoegd met relatie naar Leverancier,
+--                                                           De Bron IsActief = 0, Opmerking VARCHAR(250),
+--                                                           leverdatums volgens opdracht 3
 -- **********************************************************************************/
 
 DROP TABLE IF EXISTS ProductPerLeverancier;
@@ -13,6 +16,7 @@ DROP TABLE IF EXISTS ProductPerAllergeen;
 DROP TABLE IF EXISTS Magazijn;
 DROP TABLE IF EXISTS Allergeen;
 DROP TABLE IF EXISTS Leverancier;
+DROP TABLE IF EXISTS Contact;
 DROP TABLE IF EXISTS Product;
 
 
@@ -30,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Product
     ,Naam               VARCHAR(100)                    NOT NULL
     ,Barcode            VARCHAR(20)                     NOT NULL
     ,IsActief           BIT                             NOT NULL    DEFAULT 1
-    ,Opmerking          VARCHAR(255)                        NULL    DEFAULT NULL
+    ,Opmerking          VARCHAR(250)                        NULL    DEFAULT NULL
     ,DatumAangemaakt    DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
     ,DatumGewijzigd     DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
@@ -68,6 +72,54 @@ VALUES
 
 
 -- Step: 03
+-- Goal: Create table Contact
+-- **********************************************************************************
+-- Version       Date:           Author:                     Description:
+-- *******       **********      ****************            ******************
+-- 01            25-11-2026      Backend LJ2                 New
+-- **********************************************************************************/
+
+CREATE TABLE IF NOT EXISTS Contact
+(
+     Id                 INT             UNSIGNED        NOT NULL    AUTO_INCREMENT
+    ,Straat             VARCHAR(100)                    NOT NULL
+    ,Huisnummer         VARCHAR(10)                     NOT NULL
+    ,Postcode           VARCHAR(7)                      NOT NULL
+    ,Stad               VARCHAR(100)                    NOT NULL
+    ,IsActief           BIT                             NOT NULL    DEFAULT 1
+    ,Opmerking          VARCHAR(250)                        NULL    DEFAULT NULL
+    ,DatumAangemaakt    DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
+    ,DatumGewijzigd     DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+
+    ,CONSTRAINT     PK_Contact_Id   PRIMARY KEY CLUSTERED(Id)
+) ENGINE=InnoDB;
+
+
+-- Step: 04
+-- Goal: Fill table Contact with data
+-- **********************************************************************************
+
+INSERT INTO Contact
+(
+     Straat
+    ,Huisnummer
+    ,Postcode
+    ,Stad
+    ,IsActief
+    ,Opmerking
+    ,DatumAangemaakt
+    ,DatumGewijzigd
+)
+VALUES
+     ('Van Gilslaan', '34', '1045CB', 'Hilvarenbeek', 1, NULL, NOW(6), NOW(6))
+    ,('Den Dolderpad', '2', '1067RC', 'Utrecht', 1, NULL, NOW(6), NOW(6))
+    ,('Fredo Raalteweg', '257', '1236OP', 'Nijmegen', 1, NULL, NOW(6), NOW(6))
+    ,('Bertrand Russellhof', '21', '2034AP', 'Den Haag', 1, NULL, NOW(6), NOW(6))
+    ,('Leon van Bonstraat', '213', '145XC', 'Lunteren', 1, NULL, NOW(6), NOW(6))
+    ,('Bea van Lingenlaan', '234', '2197FG', 'Sint Pancras', 1, NULL, NOW(6), NOW(6));
+
+
+-- Step: 05
 -- Goal: Create table Leverancier
 -- **********************************************************************************
 -- Version       Date:           Author:                     Description:
@@ -82,16 +134,18 @@ CREATE TABLE IF NOT EXISTS Leverancier
     ,ContactPersoon     VARCHAR(100)                    NOT NULL
     ,LeverancierNummer  VARCHAR(20)                     NOT NULL
     ,Mobiel             VARCHAR(15)                     NOT NULL
+    ,ContactId          INT             UNSIGNED        NOT NULL
     ,IsActief           BIT                             NOT NULL    DEFAULT 1
-    ,Opmerking          VARCHAR(255)                        NULL    DEFAULT NULL
+    ,Opmerking          VARCHAR(250)                        NULL    DEFAULT NULL
     ,DatumAangemaakt    DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
     ,DatumGewijzigd     DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
-    ,CONSTRAINT     PK_Leverancier_Id   PRIMARY KEY CLUSTERED(Id)
+    ,CONSTRAINT     PK_Leverancier_Id                       PRIMARY KEY CLUSTERED(Id)
+    ,CONSTRAINT     FK_Leverancier_ContactId_Contact_Id     FOREIGN KEY (ContactId) REFERENCES Contact(Id)
 ) ENGINE=InnoDB;
 
 
--- Step: 04
+-- Step: 06
 -- Goal: Fill table Leverancier with data
 -- **********************************************************************************
 
@@ -101,21 +155,22 @@ INSERT INTO Leverancier
     ,ContactPersoon
     ,LeverancierNummer
     ,Mobiel
+    ,ContactId
     ,IsActief
     ,Opmerking
     ,DatumAangemaakt
     ,DatumGewijzigd
 )
 VALUES
-     ('Venco', 'Bert van Linge', 'L1029384719', '06-28493827', 1, NULL, NOW(6), NOW(6))
-    ,('Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734', 1, NULL, NOW(6), NOW(6))
-    ,('Haribo', 'Sven Stalman', 'L1029324748', '06-24383291', 1, NULL, NOW(6), NOW(6))
-    ,('Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823', 1, NULL, NOW(6), NOW(6))
-    ,('De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234', 1, NULL, NOW(6), NOW(6))
-    ,('Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456', 1, NULL, NOW(6), NOW(6));
+     ('Venco', 'Bert van Linge', 'L1029384719', '06-28493827', 1, 1, NULL, NOW(6), NOW(6))
+    ,('Astra Sweets', 'Jasper del Monte', 'L1029284315', '06-39398734', 2, 1, NULL, NOW(6), NOW(6))
+    ,('Haribo', 'Sven Stalman', 'L1029324748', '06-24383291', 3, 1, NULL, NOW(6), NOW(6))
+    ,('Basset', 'Joyce Stelterberg', 'L1023845773', '06-48293823', 4, 1, NULL, NOW(6), NOW(6))
+    ,('De Bron', 'Remco Veenstra', 'L1023857736', '06-34291234', 5, 0, 'Leverancier is niet actief, gegevens kunnen niet gewijzigd worden', NOW(6), NOW(6))
+    ,('Quality Street', 'Johan Nooij', 'L1029234586', '06-23458456', 6, 1, NULL, NOW(6), NOW(6));
 
 
--- Step: 05
+-- Step: 07
 -- Goal: Create table Allergeen
 -- **********************************************************************************
 -- Version       Date:           Author:                     Description:
@@ -129,7 +184,7 @@ CREATE TABLE IF NOT EXISTS Allergeen
     ,Naam               VARCHAR(50)                     NOT NULL
     ,Omschrijving       VARCHAR(250)                    NOT NULL
     ,IsActief           BIT                             NOT NULL    DEFAULT 1
-    ,Opmerking          VARCHAR(255)                        NULL    DEFAULT NULL
+    ,Opmerking          VARCHAR(250)                        NULL    DEFAULT NULL
     ,DatumAangemaakt    DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
     ,DatumGewijzigd     DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
@@ -137,7 +192,7 @@ CREATE TABLE IF NOT EXISTS Allergeen
 ) ENGINE=InnoDB;
 
 
--- Step: 06
+-- Step: 08
 -- Goal: Fill table Allergeen with data
 -- **********************************************************************************
 
@@ -158,7 +213,7 @@ VALUES
     ,('Soja', 'Dit product bevat soja', 1, NULL, NOW(6), NOW(6));
 
 
--- Step: 07
+-- Step: 09
 -- Goal: Create table Magazijn
 -- **********************************************************************************
 -- Version       Date:           Author:                     Description:
@@ -173,7 +228,7 @@ CREATE TABLE IF NOT EXISTS Magazijn
     ,VerpakkingsEenheid     DECIMAL(6,2)                    NOT NULL
     ,AantalAanwezig         INT             UNSIGNED            NULL    DEFAULT NULL
     ,IsActief               BIT                             NOT NULL    DEFAULT 1
-    ,Opmerking              VARCHAR(255)                        NULL    DEFAULT NULL
+    ,Opmerking              VARCHAR(250)                        NULL    DEFAULT NULL
     ,DatumAangemaakt        DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
     ,DatumGewijzigd         DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
@@ -182,7 +237,7 @@ CREATE TABLE IF NOT EXISTS Magazijn
 ) ENGINE=InnoDB;
 
 
--- Step: 08
+-- Step: 10
 -- Goal: Fill table Magazijn with data
 -- **********************************************************************************
 
@@ -212,7 +267,7 @@ VALUES
     ,(13, 5,  20,   1, NULL, NOW(6), NOW(6));
 
 
--- Step: 09
+-- Step: 11
 -- Goal: Create table ProductPerAllergeen
 -- **********************************************************************************
 -- Version       Date:           Author:                     Description:
@@ -226,7 +281,7 @@ CREATE TABLE IF NOT EXISTS ProductPerAllergeen
     ,ProductId                  INT             UNSIGNED        NOT NULL
     ,AllergeenId                INT             UNSIGNED        NOT NULL
     ,IsActief                   BIT                             NOT NULL    DEFAULT 1
-    ,Opmerking                  VARCHAR(255)                        NULL    DEFAULT NULL
+    ,Opmerking                  VARCHAR(250)                        NULL    DEFAULT NULL
     ,DatumAangemaakt            DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
     ,DatumGewijzigd             DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
@@ -236,7 +291,7 @@ CREATE TABLE IF NOT EXISTS ProductPerAllergeen
 ) ENGINE=InnoDB;
 
 
--- Step: 10
+-- Step: 12
 -- Goal: Fill table ProductPerAllergeen with data
 -- **********************************************************************************
 
@@ -264,7 +319,7 @@ VALUES
     ,(13, 5, 1, NULL, NOW(6), NOW(6));
 
 
--- Step: 11
+-- Step: 13
 -- Goal: Create table ProductPerLeverancier
 -- **********************************************************************************
 -- Version       Date:           Author:                     Description:
@@ -281,7 +336,7 @@ CREATE TABLE IF NOT EXISTS ProductPerLeverancier
     ,Aantal                         INT             UNSIGNED        NOT NULL
     ,DatumEerstVolgendeLevering     DATE                                NULL    DEFAULT NULL
     ,IsActief                       BIT                             NOT NULL    DEFAULT 1
-    ,Opmerking                      VARCHAR(255)                        NULL    DEFAULT NULL
+    ,Opmerking                      VARCHAR(250)                        NULL    DEFAULT NULL
     ,DatumAangemaakt                DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6)
     ,DatumGewijzigd                 DATETIME(6)                     NOT NULL    DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
 
@@ -291,7 +346,7 @@ CREATE TABLE IF NOT EXISTS ProductPerLeverancier
 ) ENGINE=InnoDB;
 
 
--- Step: 12
+-- Step: 14
 -- Goal: Fill table ProductPerLeverancier with data
 -- **********************************************************************************
 
@@ -308,20 +363,20 @@ INSERT INTO ProductPerLeverancier
     ,DatumGewijzigd
 )
 VALUES
-     (1, 1, '2024-11-09', 23, '2024-11-16', 1, NULL, NOW(6), NOW(6))
-    ,(1, 1, '2024-11-18', 21, '2024-11-25', 1, NULL, NOW(6), NOW(6))
-    ,(1, 2, '2024-11-09', 12, '2024-11-16', 1, NULL, NOW(6), NOW(6))
-    ,(1, 3, '2024-11-10', 11, '2024-11-17', 1, NULL, NOW(6), NOW(6))
-    ,(2, 4, '2024-11-14', 16, '2024-11-21', 1, NULL, NOW(6), NOW(6))
-    ,(2, 4, '2024-11-21', 23, '2024-11-28', 1, NULL, NOW(6), NOW(6))
-    ,(2, 5, '2024-11-14', 45, '2024-11-21', 1, NULL, NOW(6), NOW(6))
-    ,(2, 6, '2024-11-14', 30, '2024-11-21', 1, NULL, NOW(6), NOW(6))
-    ,(3, 7, '2024-11-12', 12, '2024-11-19', 1, NULL, NOW(6), NOW(6))
-    ,(3, 7, '2024-11-19', 23, '2024-11-26', 1, NULL, NOW(6), NOW(6))
-    ,(3, 8, '2024-11-10', 12, '2024-11-17', 1, NULL, NOW(6), NOW(6))
-    ,(3, 9, '2024-11-11', 1,  '2024-11-18', 1, NULL, NOW(6), NOW(6))
-    ,(4, 10, '2024-11-16', 24, '2024-11-30', 1, NULL, NOW(6), NOW(6))
-    ,(5, 11, '2024-11-10', 47, '2024-11-17', 1, NULL, NOW(6), NOW(6))
-    ,(5, 11, '2024-11-19', 60, '2024-11-26', 1, NULL, NOW(6), NOW(6))
-    ,(5, 12, '2024-11-11', 45, NULL, 1, NULL, NOW(6), NOW(6))
-    ,(5, 13, '2024-11-12', 23, NULL, 1, NULL, NOW(6), NOW(6));
+     (1, 1, '2023-04-09', 23, '2023-04-16', 1, NULL, NOW(6), NOW(6))
+    ,(1, 1, '2023-04-18', 21, '2023-04-25', 1, NULL, NOW(6), NOW(6))
+    ,(1, 2, '2023-04-09', 12, '2023-04-16', 1, NULL, NOW(6), NOW(6))
+    ,(1, 3, '2023-04-10', 11, '2023-04-17', 1, NULL, NOW(6), NOW(6))
+    ,(2, 4, '2023-04-14', 16, '2023-04-21', 1, NULL, NOW(6), NOW(6))
+    ,(2, 4, '2023-04-21', 23, '2023-04-28', 1, NULL, NOW(6), NOW(6))
+    ,(2, 5, '2023-04-14', 45, '2023-04-21', 1, NULL, NOW(6), NOW(6))
+    ,(2, 6, '2023-04-14', 30, '2023-04-21', 1, NULL, NOW(6), NOW(6))
+    ,(3, 7, '2023-04-12', 12, '2023-04-19', 1, NULL, NOW(6), NOW(6))
+    ,(3, 7, '2023-04-19', 23, '2023-04-26', 1, NULL, NOW(6), NOW(6))
+    ,(3, 8, '2023-04-10', 12, '2023-04-17', 1, NULL, NOW(6), NOW(6))
+    ,(3, 9, '2023-04-11', 1,  '2023-04-18', 1, NULL, NOW(6), NOW(6))
+    ,(4, 10, '2023-04-16', 24, '2023-04-30', 1, NULL, NOW(6), NOW(6))
+    ,(5, 11, '2023-04-10', 47, '2023-04-17', 1, NULL, NOW(6), NOW(6))
+    ,(5, 11, '2023-04-19', 60, '2023-04-26', 1, NULL, NOW(6), NOW(6))
+    ,(5, 12, '2023-04-11', 45, NULL, 1, NULL, NOW(6), NOW(6))
+    ,(5, 13, '2023-04-12', 23, NULL, 1, NULL, NOW(6), NOW(6));

@@ -26,6 +26,7 @@ return new class extends Migration
         DB::statement('DROP TABLE IF EXISTS ProductPerLeverancier');
         DB::statement('DROP TABLE IF EXISTS Magazijn');
         DB::statement('DROP TABLE IF EXISTS Leverancier');
+        DB::statement('DROP TABLE IF EXISTS Contact');
         DB::statement('DROP TABLE IF EXISTS Product');
         DB::statement('DROP TABLE IF EXISTS Allergeen');
 
